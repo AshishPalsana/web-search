@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="static/css/signInCSS.css" />
+    <script src="static/js/signUp.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="logo-container">
+        <a href="{{ url_for('openSearchPage')}}">
+          <img src="static/img/Group 2@3x33.png" alt="logo" class="logo" />
+        </a>
+      </div>
+      <h2>Sign Up</h2>
+
+      <div class="form-container">
+        <form id="myForm" method="post">
+          <div class="inner-form-container">
+            <input type="text" id="username" name="email" placeholder="Email" required />
+            <input
+              type="password"
+              id="password1"
+              name="password1"
+              placeholder="Password"
+              required
+            />
+            <input
+              type="password"
+              id="password2"
+              name="password2"
+              placeholder="Confirm Password"
+              required
+            />
+            <p id="errorTitle" class="error"></p>
+            <div class="buttons-sign">
+              <input type="submit" value="Sign Up" />
+
+              <a href="{{ url_for('openSignInPage')}}" class="hyperLink"
+                >< Sign-in</a
+              >
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="static/css/styleResults.css" />
+    <script src="static/js/upload.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="vertical-top">
+        <div class="top-left-text">
+          <a href="{{ url_for('openSearchPage')}}"
+            ><img src="static/img/Group 2@3x33.png" alt="logo" class="logo"
+          /></a>
+
+          <form enctype="multipart/form-data" id="audio-form">
+
+              <input
+                type="file"
+                id="file-upload-input"
+                name="myfile"
+                accept=".wav, .mp3, .flac"
+                hidden
+              />
+              <label for="file-upload-input" class="upload-box" id="file-name">Click to upload or drop audio file here</label>
+
+            <div class="buttons">
+              <button class="button search" type="submit">Search</button>
+              <!-- <button type="submit" class="search">Search</button> -->
+              <button
+                type="button"
+                class="button dissect"
+                onclick="showSpinner()"
+              >
+                Dissect Sound
+                <div id="spinner" class="spinner"></div>
+              </button>
+
+              <script>
+                // make sure the spinner is hidden at the start
+                document.getElementById("spinner").style.display = "none";
+
+                function showSpinner() {
+                  var spinner = document.getElementById("spinner");
+                  spinner.style.display = "block";
+                  setTimeout(function () {
+                    spinner.style.display = "none";
+                  }, 2000); // Stops after 2 seconds
+                }
+              </script>
+            </div>
+          </form>
+        </div>
+        <div class="header">
+          <a href="{{ url_for('openSignInPage')}}">Logout</a>
+          <!-- <a href="#">Profile</a> -->
+        </div>
+      </div>
+      <div class="h2Container">
+        <h2>Search Results <span id="file-name-span"></span></h2>
+      </div>
+      <!-- Repeat the div class="result" as many times as needed -->
+      <div id="results"></div>
+    </div>
+    <img src="static/img/loading.gif" class="loading-fixed" id="loading"/>
+    <div class="footer">
+      <a href="#">Advertising</a>
+      <a href="#">Business</a>
+      <a href="#">About</a>
+    </div>
+
+    <script>
+      function playAudio(id) {
+        var audio = document.getElementById(id);
+        var audioImg = document.getElementById(`img-${id}`);
+        if(audio.paused){
+          audio.play()
+          audioImg.setAttribute("src","static/img/pause.png")
+        }else{
+          audio.pause()
+          audioImg.setAttribute("src","static/img/Triangle@3x.png")
+        }
+      }
+    </script>
+  </body>
+</html>

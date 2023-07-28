@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="static/css/styles.css" />
+    <script src="static/js/upload.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="top-left-text">
+        <h1>Open Frequencies</h1>
+        <p id="p1">Search for sounds by uploading an audio file</p>
+      </div>
+
+      <div class="header">
+        {% if session %}
+        <a href="/logout">Logout</a>
+        {% else %}
+        <a href="{{ url_for('openSignInPage')}}">Sign-in</a>
+        {% endif %}
+      </div>
+
+      <div class="header">
+        {% if session %}
+        <h2>Welcome {{session['email']}}!</h2>
+        {% else %}
+        <h2>Welcome Guest!</h2>
+        {% endif %}
+      </div>
+
+      <hr />
+      <div class="content">
+        <img src="static/img/Group 2@3x33.png" alt="logo" class="logo" />
+
+        <form enctype="multipart/form-data" id="audio-form">
+<!--          <div class="upload-box">-->
+            <label for="file-upload-input" class="upload-box">
+                <span id="file-name">Click to upload or drop audio file here</span>
+            <input
+              type="file"
+              id="file-upload-input"
+              name="myfile"
+              accept=".wav, .mp3"
+              hidden
+            />
+            </label>
+<!--          </div>-->
+
+          <div class="buttons">
+<!--            <a href="{{ url_for('openResultsPage')}}" class="button search"-->
+<!--               -->
+<!--              >Search</a-->
+<!--            >-->
+            <button class="button search" type="submit">Search</button>
+            <!-- <button type="submit" class="search">Search</button> -->
+            <button type="button" class="button dissect" onclick="">
+              Dissect Sound
+              <div id="spinner" style="display: none">Loading...</div>
+            </button>
+<!--            <script>-->
+<!--              function hi() {-->
+<!--                showSpinner();-->
+<!--              }-->
+<!--            </script>-->
+          </div>
+        </form>
+        <p>Acceptable formats: .wav, .mp3</p>
+
+        <div class="content">
+          <!-- The container for the results -->
+          <div id="results-container">
+            <!-- Results will be inserted here -->
+          </div>
+        </div>
+      </div>
+        <img src="static/img/loading.gif" class="loading-fixed" id="loading"/>
+      <div class="footer">
+        <a href="#">Advertising</a>
+        <a href="#">Business</a>
+        <a href="#">About</a>
+      </div>
+    </div>
+  </body>
+</html>
+
+<!-- <script>
+  // make sure the spinner is hidden at the start
+  document.getElementById("spinner").style.display = "none";
+
+  function showSpinner() {
+    var spinner = document.getElementById("spinner");
+    spinner.style.display = "block";
+    setTimeout(function () {
+      spinner.style.display = "none";
+    }, 2000); // Stops after 2 seconds
+  }
+</script> -->
